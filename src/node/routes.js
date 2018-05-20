@@ -32,22 +32,26 @@ module.exports = function(app) {
     app.route('/api/movies')
         .post(function(req, res) {
             var tempdata = loadAPIContent();
+            let movie = req.body.movie;
             tempdata.movies.push(
                 {
-                    "titre": "Le destructeur",
-                    "année_sortie": "2019",
-                    "langue": "anglais",
-                    "réalisateur": {
-                        "nom": "Marcilloux",
-                        "prénom": "Nicolas",
-                        "nationalité": "français",
-                        "date_de_naissance": "12/03/1997"
+                    "title": movie.title?movie.title:"",
+                    "year": movie.year?movie.year:"",
+                    "language": movie.language?movie.language:"",
+                    "genre": movie.genre?movie.genre:"",
+                    "synopsis": movie.synopsis?movie.synopsis:"",
+                    "director": {
+                        "lastname": movie.director.lastname?movie.director.lastname:"",
+                        "firstname": movie.director.firstname?movie.director.firstname:"",
+                        "nationality": movie.director.nationality?movie.director.nationality:"",
+                        "birthdate": movie.director.birthdate?movie.director.birthdate:""
                     },
-                    "genre": "Super-Heros"
+                    
                 }
             );
+            
             fs.writeFileSync(filename, JSON.stringify(tempdata, null, 4));
-            res.send('TODO : créé un nouveau film')
+            res.send();
         }
     );
 

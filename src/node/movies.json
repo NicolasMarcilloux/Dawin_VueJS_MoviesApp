@@ -1,52 +1,40 @@
 {
     "movies": [
         {
-            "titre": "1984",
-            "année_sortie": "1948",
-            "langue": "anglais",
-            "réalisateur": {
-                "nom": "Radford",
-                "prénom": "Michael",
-                "nationalité": "britannique",
-                "date_de_naissance": "24/02/1946"
+            "title": "1984",
+            "year": "1948",
+            "language": "anglais",
+            "director": {
+                "lastname": "Radford",
+                "firstname": "Michael",
+                "nationality": "britannique",
+                "birthdate": "24/02/1946"
             },
             "genre": "Science-Fiction"
         },
         {
-            "titre": "Limitless",
-            "année_sortie": "2011",
-            "langue": "anglais",
-            "réalisateur": {
-                "nom": "Burger",
-                "prénom": "Neil",
-                "nationalité": "américain",
-                "date_de_naissance": "1963"
+            "title": "Limitless",
+            "year": "2011",
+            "language": "anglais",
+            "director": {
+                "lastname": "Burger",
+                "firstname": "Neil",
+                "nationality": "américain",
+                "birthdate": "1963"
             },
             "genre": "Thriller"
         },
         {
-            "titre": "Phone Game",
-            "année_sortie": "2002",
-            "langue": "anglais",
-            "réalisateur": {
-                "nom": "Schumacher",
-                "prénom": "Joel",
-                "nationalité": "américain",
-                "date_de_naissance": "29/08/1939"
+            "title": "Phone Game",
+            "year": "2002",
+            "language": "anglais",
+            "director": {
+                "lastname": "Schumacher",
+                "firstname": "Joel",
+                "nationality": "américain",
+                "birthdate": "29/08/1939"
             },
             "genre": "Thriller"
-        },
-        {
-            "titre": "Le destructeur d'anus",
-            "année_sortie": "2019",
-            "langue": "anglais",
-            "réalisateur": {
-                "nom": "Marcilloux",
-                "prénom": "Nicolas",
-                "nationalité": "français",
-                "date_de_naissance": "12/03/1997"
-            },
-            "genre": "Super-Heros"
         }
     ]
 }
