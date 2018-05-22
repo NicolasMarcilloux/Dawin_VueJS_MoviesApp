@@ -4,7 +4,7 @@
     <span v-if="display_details">
         {{movie.synopsis}}<br />
         
-        <router-link tag="button" to="/edit">Edit</router-link>
+        <router-link tag="button" :to="{ name: 'edit' , params: this.movie }">Edit</router-link>
         <button @click="remove">Remove</button>
     </span>
     <br /><br />
@@ -20,11 +20,8 @@ export default {
         }
     },
     methods: {
-        edit() {
-            this.$emit('edit', this.movie)
-        },
         remove() {
-            this.$emit('remove')
+            this.$store.dispatch("deleteMovie", this.movie.id);
         }
     },
 }

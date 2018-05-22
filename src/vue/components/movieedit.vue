@@ -1,9 +1,17 @@
 <template>
     <p>
-        New movie<br />
+        Edit movie<br />
+
         Title : <input type="text" v-model="movie_to_edit.title" /><br />
         Year : <input type="text" v-model="movie_to_edit.year" /><br />
-        Synopsis : <textarea v-model="movie_to_edit.synopsis"></textarea><br />
+        Genre : <input type="text" v-model="movie_to_edit.genre"/><br />
+        Language : <input type="text" v-model="movie_to_edit.language"/><br />
+        Director :  <br/> 
+            Last name : <input type="text" v-model="movie_to_edit.director.lastname" /><br />
+            First name : <input type="text" v-model="movie_to_edit.director.firstname" /><br />
+            Nationality : <input type="text" v-model="movie_to_edit.director.nationality" /><br />
+            Birth Date : <input type="date" v-model="movie_to_edit.director.birthdate" /> (currently {{this.movie_to_edit.director.birthdate}})<br />
+
         <button v-on:click="save">Save</button>
     </p>
 </template>
@@ -11,28 +19,20 @@
 <script>
 
 export default {
-    data() {
+    props: [ "movie" ],
+     data() {
         return {
-            
+            movie_to_edit: this.$route.params
         }
     },
-    methods: {
-        /*edit: function(movie) {
-            this.movie_to_edit = movie
-        },
-        save: function() {
-            this.movie_to_edit = null
-        }*/
+    created: function() {
+        this.movie_to_edit = this.$route.params;
     },
-    computed: {
-        movie_to_edit: function() {
-            for(var movie in this.$store.state.movies)
-            {
-                if(movie.id == this.$route.params.id)
-                {
-                    return movie;
-                }
-            }
+    methods: {
+        save: function() {
+            this.$store.dispatch("editMovie", this.movie_to_edit);
+            this.movie_to_edit = {};
+            this.$router.push({ name: 'home' });
         }
     }
 }
