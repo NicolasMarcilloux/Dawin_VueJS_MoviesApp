@@ -19,7 +19,7 @@
     Search : <input type="text" v-model="search" />
 
     <ul>
-        <movie-item v-for="(movie, index) in movies_search" v-bind:key="movie.title" v-bind:movie="movie" v-on:edit="edit" v-on:remove="remove(index)"></movie-item>
+        <movie-item v-for="(movie, index) in movies_search" v-bind:key="movie.title" v-bind:movie="movie" v-on:remove="remove(index)"></movie-item>
     </ul>
 
     <button v-on:click="getMovie">TEST GET BY ID</button>
@@ -50,9 +50,6 @@ export default {
             var director = {};
             this.movie_to_add.director = director;
         },
-        edit: function() {
-            // Edit
-        },
         remove: function(index) {
             this.$store.commit('removeMovie', index);
         },
@@ -61,13 +58,28 @@ export default {
         },
         deleteMovie(){
             this.$store.dispatch("deleteMovie", 2);
-        }
+        },
+         
     },
     computed: {
-        movies_search: function() {            
-            return this.$store.state.movies.filter(m => m.title.toLowerCase().indexOf(this.search.toLowerCase())!=-1);
-        },
-    },
+        /**
+         * Désolé je sais que c'est abominable mais au moins ça marche
+         */
+        movies_search: function() {
+            var movies = [];
+
+            movies.push(...this.$store.state.movies.filter(m => m.title.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.year.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.language.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.genre.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.director.firstname.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.director.lastname.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.director.nationality.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+            movies.push(...this.$store.state.movies.filter(m => m.director.birthdate.toLowerCase().indexOf(this.search.toLowerCase())!=-1));
+
+            return [...new Set(movies)];
+        }
+    }
 }
 </script>
 
