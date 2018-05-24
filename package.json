@@ -8,10 +8,11 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
+    "bootstrap": "^4.1.1",
     "css-loader": "^0.28.10",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
-    "nodemon": "^1.17.4",
+    "font-awesome": "^4.7.0",
     "vue": "^2.5.16",
     "vue-loader": "^14.2.1",
     "vue-router": "^3.0.1",
@@ -22,5 +23,8 @@
   },
   "script": {
     "dev": "webpack-dev-server --open --hot"
+  },
+  "devDependencies": {
+    "style-loader": "^0.21.0"
   }
 }

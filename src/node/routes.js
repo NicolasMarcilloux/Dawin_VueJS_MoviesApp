@@ -61,7 +61,8 @@ module.exports = function(app) {
                         "nationality": movie.director.nationality?movie.director.nationality:"",
                         "birthdate": movie.director.birthdate?movie.director.birthdate:""
                     },
-                    "genre": movie.genre?movie.genre:""
+                    "genre": movie.genre?movie.genre:"",
+                    "rate": null
                 }
             );
             

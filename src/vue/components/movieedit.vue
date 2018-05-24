@@ -13,6 +13,7 @@
             Birth Date : <input type="date" v-model="movie_to_edit.director.birthdate" /> (currently {{this.movie_to_edit.director.birthdate}})<br />
 
         <button v-on:click="save">Save</button>
+        <button v-on:click="cancel">Cancel</button>
     </p>
 </template>
 
@@ -32,6 +33,9 @@ export default {
         save: function() {
             this.$store.dispatch("editMovie", this.movie_to_edit);
             this.movie_to_edit = {};
+            this.$router.push({ name: 'home' });
+        },
+        cancel: function() {
             this.$router.push({ name: 'home' });
         }
     }

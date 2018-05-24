@@ -11,7 +11,8 @@
                 "nationality": "britannique",
                 "birthdate": "24/02/1946"
             },
-            "genre": "Science-Fiction"
+            "genre": "Science-Fiction",
+            "rate": 2
         },
         {
             "id": 1,
@@ -24,20 +25,8 @@
                 "nationality": "américain",
                 "birthdate": "2018-05-25"
             },
-            "genre": "Thriller"
-        },
-        {
-            "id": 2,
-            "title": "Phone Game",
-            "year": "2002",
-            "language": "anglais",
-            "director": {
-                "lastname": "Schumacher",
-                "firstname": "Joel",
-                "nationality": "américain",
-                "birthdate": "29/08/1939"
-            },
-            "genre": "Thriller"
+            "genre": "Thriller",
+            "rate": 5
         }
     ]
 }

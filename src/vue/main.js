@@ -1,9 +1,9 @@
-import Vue from 'vue' //librairie "vue" dans node_modules
-import VueRouter from 'vue-router'
-import app from './app.vue' //fichier app.vue local
-import myStore from './store'
+import Vue from 'vue'; //librairie "vue" dans node_modules
+import VueRouter from 'vue-router';
+import app from './app.vue'; //fichier app.vue local
+import myStore from './store';
 import routes from './routes.js';
-import MovieItemComponent from './components/movieitem.vue'
+import MovieItemComponent from './components/movieitem.vue';
 
 Vue.component('movie-item', MovieItemComponent);
 Vue.use(VueRouter);

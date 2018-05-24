@@ -1,6 +1,22 @@
 <template>
 <div>
-    <span id="msg">{{message}}</span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <p>Movie number : {{this.$store.state.movies.length}}</p>
     <p>
@@ -22,13 +38,12 @@
         <movie-item v-for="(movie, index) in movies_search" v-bind:key="movie.title" v-bind:movie="movie" v-on:remove="remove(index)"></movie-item>
     </ul>
 
-    <button v-on:click="getMovie">TEST GET BY ID</button>
 
-   
 </div>
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -50,20 +65,10 @@ export default {
             var director = {};
             this.movie_to_add.director = director;
         },
-        remove: function(index) {
-            this.$store.commit('removeMovie', index);
-        },
-        getMovie(){
-            this.$store.dispatch("getMovie", 2);
-        },
-        deleteMovie(){
-            this.$store.dispatch("deleteMovie", 2);
-        },
-         
     },
     computed: {
         /**
-         * Désolé je sais que c'est abominable mais au moins ça marche
+         * Désolé je sais que c'est abominable mais au moins ça marche (et j'ai pas trouvé d'alternatives)
          */
         movies_search: function() {
             var movies = [];
@@ -81,10 +86,9 @@ export default {
         }
     }
 }
+
 </script>
 
 <style>
-#msg {
-  color: red;
-}
+ 
 </style>
