@@ -1,6 +1,8 @@
 module.exports = function(app) {
     const fs = require("fs");
     const filename = "src/node/movies.json";
+    const directory = "src/node/posters/";
+    var IMAGE_ID = 0;
     
     function loadAPIFile(){
         return fs.readFileSync(filename);
@@ -8,6 +10,11 @@ module.exports = function(app) {
 
     function loadAPIContent(){
         return JSON.parse(loadAPIFile());
+    }
+
+    function base64_encode(file) {
+        var bitmap = fs.readFileSync(file);
+        return new Buffer(bitmap).toString('base64');
     }
 
     // Récupération de tous les films
@@ -62,7 +69,8 @@ module.exports = function(app) {
                         "birthdate": movie.director.birthdate?movie.director.birthdate:""
                     },
                     "genre": movie.genre?movie.genre:"",
-                    "rate": null
+                    "rate": null,
+                    "poster": null
                 }
             );
             
@@ -71,4 +79,34 @@ module.exports = function(app) {
         }
     );
 
+    // Upload d'un poster
+    app.route('/movies/:id/poster')
+        .post(function (req, res, next) {
+            let moviesData = loadAPIContent();
+            let movie = moviesData.movies.find(movie => movie.id == req.params.id)
+            let movieIndex = moviesData.movies.indexOf(movie);
+
+            let poster = req.body.poster;
+            let img = poster.dataURL;
+            let extension = poster.upload.filename.split('.')[1];
+            let postername = directory + IMAGE_ID + "." + extension;
+
+            if (!fs.existsSync(directory)){
+                fs.mkdirSync(directory);
+            }
+
+            var data = img.replace(/^data:image\/\w+;base64,/, "");
+            var buffer = new Buffer(data, 'base64');
+            fs.writeFileSync(postername, buffer);
+
+            movie.poster = postername;
+
+            moviesData.movies.splice(movieIndex, 1, movie);
+            fs.writeFileSync(filename, JSON.stringify(moviesData, null, 4));
+
+            IMAGE_ID++;
+
+
+      }
+    );
 }

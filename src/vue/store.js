@@ -46,7 +46,14 @@ export default new Vuex.Store({
             axios.post(url).then((response) => {
                 this.dispatch('getMoviesFromAPI');
             });
-        }
+        },
+        uploadPoster(context, params){
+            let url = 'http://localhost:3000/movies/' + params.id + "/poster";
+            axios.post(url, { poster: params.img }).then((response) => {
+                    //this.dispatch('getMoviesFromAPI');
+                    console.log("Successfully sent a poster");
+            });
+        },
     },
     mutations: {
         addMovie(state, movie) {

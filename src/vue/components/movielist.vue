@@ -1,46 +1,69 @@
 <template>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>New movie</h3>
+            <p>Movie number : {{this.$store.state.movies.length}}</p>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
+            <form>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" v-model="movie_to_add.title" class="form-control" id="title" placeholder="Enter Title">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="text" v-model="movie_to_add.year" class="form-control" id="year" placeholder="Enter Year">
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre</label>
+                    <input type="text" v-model="movie_to_add.genre" class="form-control" id="genre" placeholder="Enter Genre">
+                </div>
+                <div class="form-group">
+                    <label for="language">Language</label>
+                    <input type="text" v-model="movie_to_add.language" class="form-control" id="language" placeholder="Enter Language">
+                </div>
+
+                <hr>
+                <h4>Director</h4>
+
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" v-model="movie_to_add.director.lastname" class="form-control" id="lastname" placeholder="Enter Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" v-model="movie_to_add.director.firstname" class="form-control" id="firstname" placeholder="Enter First Name">
+                </div>
+                <div class="form-group">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" v-model="movie_to_add.director.nationality" class="form-control" id="nationality" placeholder="Enter Nationality">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" v-model="movie_to_add.director.birthdate" class="form-control" id="birthdate" placeholder="Enter Birthdate">
+                </div>
+                
+                <button v-on:click="add" type="submit" class="btn btn-primary">Add</button>
+            </form>
+
         </div>
-    </nav>
 
-    <p>Movie number : {{this.$store.state.movies.length}}</p>
-    <p>
-        New movie<br />
-        Title : <input type="text" v-model="movie_to_add.title" /><br />
-        Year : <input type="text" v-model="movie_to_add.year" /><br />
-        Genre : <input type="text" v-model="movie_to_add.genre"/><br />
-        Language : <input type="text" v-model="movie_to_add.language"/><br />
-        Director :  <br/> 
-            Last name : <input type="text" v-model="movie_to_add.director.lastname" /><br />
-            First name : <input type="text" v-model="movie_to_add.director.firstname" /><br />
-            Nationality : <input type="text" v-model="movie_to_add.director.nationality" /><br />
-            Birth Date : <input type="date" v-model="movie_to_add.director.birthdate" /><br />
-        <button v-on:click="add">Add</button>
-    </p>
-    Search : <input type="text" v-model="search" />
-
-    <ul>
-        <movie-item v-for="(movie, index) in movies_search" v-bind:key="movie.title" v-bind:movie="movie" v-on:remove="remove(index)"></movie-item>
-    </ul>
-
+        <div class="col-sm-6">
+                <input type="text" v-model="search" placeholder="Search movies..." class="form-control" /><br/><br/>
+                <ul class="row">
+                    <movie-item v-for="(movie, index) in movies_search" v-bind:key="movie.title" v-bind:movie="movie" v-on:remove="remove(index)"></movie-item>
+                </ul>
+        </div>
+    </div>
+    
 
 </div>
 </template>
+
+
+
+
+
 
 <script>
 
@@ -49,7 +72,7 @@ export default {
         return {
             message: "Hello",
             movie_to_add: {},
-            search: "",
+            search: ""
         }
     },
     created: function() {
@@ -89,6 +112,3 @@ export default {
 
 </script>
 
-<style>
- 
-</style>

@@ -17,12 +17,17 @@
     "vue-loader": "^14.2.1",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.15",
+    "vue2-dropzone": "^3.2.2",
     "vuex": "^3.0.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
-  "script": {
-    "dev": "webpack-dev-server --open --hot"
+  "scripts": {
+    "dep": "npm install",
+    "build": "node_modules/.bin/webpack --progress --hide-modules",
+    "front": "node_modules/.bin/webpack-dev-server --open --hot",
+    "back": "node src/node/app.js",
+    "dev": "npm run dep && npm run build && npm run back | npm run front"
   },
   "devDependencies": {
     "style-loader": "^0.21.0"
